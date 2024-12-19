@@ -11,9 +11,9 @@ props
 MagiskHide Props Config v6.1.2
 by Didgeridoohan @ XDA Developers
 
-=====================================
+==================
  Select an option below.
-=====================================
+==================
 
 1 - Edit device fingerprint
 2 - Force BASIC key attestation
@@ -35,10 +35,10 @@ Enter your desired option: 5
 MagiskHide Props Config v6.1.2
 by Didgeridoohan @ XDA Developers
 
-=====================================
+==================
  Custom props
  Select an option below:
-=====================================
+==================
 
 Set or edit custom prop values for your device.
 
@@ -57,9 +57,9 @@ Enter your desired option: n
 MagiskHide Props Config v6.1.2
 by Didgeridoohan @ XDA Developers
 
-=====================================
+===============
  New custom prop
-=====================================
+===============
 
 Enter the prop to set. Example:
 ro.sf.lcd_density
@@ -71,9 +71,9 @@ Enter your desired option: ro.debuggable
 MagiskHide Props Config v6.1.2
 by Didgeridoohan @ XDA Developers
 
-=====================================
+==============
  ro.debuggable
-=====================================
+==============
 
 ro.debuggable is
 one of the sensitive props that can be
@@ -89,9 +89,9 @@ Enter your desired option: y
 MagiskHide Props Config v6.1.2
 by Didgeridoohan @ XDA Developers
 
-=====================================
+==============
  ro.debuggable
-=====================================
+==============
 
 Enter the value you want to set
 ro.debuggable to,
@@ -108,9 +108,9 @@ Enter your desired option: 1
 MagiskHide Props Config v6.1.2
 by Didgeridoohan @ XDA Developers
 
-=====================================
+==============
  ro.debuggable
-=====================================
+==============
 
 This will set ro.debuggable to:
 
@@ -143,9 +143,9 @@ Working. Please wait...
 MagiskHide Props Config v6.1.2
 by Didgeridoohan @ XDA Developers
 
-=====================================
+=============
  Reboot - ro.debuggable
-=====================================
+=============
 
 Reboot for changes to take effect.
 
@@ -160,6 +160,27 @@ Android
 Android 8.0 以上开启全局可调式
 
 © 2024 苏的博客 · Powered by Hugo & PaperMod
+
+Android系统中的/data/local/tmp 目录是一个特殊目录，可以使用adb上传或拉取文件，许多工具也会将运行需要的文件推送到该目录下
+
+试了各种办法，发现没成功，然后想起似乎删除过/tmp目录，开启投屏工具会报错，提示"AdbProcessImpl::out :adb: error: failed tocopy 'F:/soft/app/QtScrcpy win-x64-v2.1.2/scrcpy-server' to '/data/local/tmp/scrcpyserver. jar': remote couldn' t create file!Permission denied"
+
+
+
+尝试换其他手机进行连接，却发现是正常的，所以是该手机的环境问题
+
+
+
+解决方法 ：
+
+adb shell
+su
+chmod 771  /data/local/tmp
+chown shell /data/local/tmp/
+chgrp shell /data/local/tmp/
+chcon -R u:object_r:shell_data_file:s0 /data/local/tmp
+执行以上命令后，再打开投屏工具进行尝试，成功啦 
+
 
 
 
