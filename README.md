@@ -155,15 +155,15 @@ Enter y(es), n(o) or e(xit): y
 
 Rebooting...
 MagiskHidePropsConf
-Android
-« 上一页
-Android 8.0 以上开启全局可调式
+
 
 © 2024 苏的博客 · Powered by Hugo & PaperMod
 
-Android系统中的/data/local/tmp 目录是一个特殊目录，可以使用adb上传或拉取文件，许多工具也会将运行需要的文件推送到该目录下
+# Android系统中的/data/local/tmp 目录是一个特殊目录，可以使用adb上传或拉取文件，许多工具也会将运行需要的文件推送到该目录下
 
-试了各种办法，发现没成功，然后想起似乎删除过/tmp目录，开启投屏工具会报错，提示"AdbProcessImpl::out :adb: error: failed tocopy 'F:/soft/app/QtScrcpy win-x64-v2.1.2/scrcpy-server' to '/data/local/tmp/scrcpyserver. jar': remote couldn' t create file!Permission denied"
+试了各种办法，发现没成功，然后想起似乎删除过/tmp目录，开启投屏工具会报错，
+
+提示"AdbProcessImpl::out :adb: error: failed tocopy 'F:/soft/app/QtScrcpy win-x64-v2.1.2/scrcpy-server' to '/data/local/tmp/scrcpyserver. jar': remote couldn' t create file!Permission denied"
 
 
 
@@ -174,11 +174,17 @@ Android系统中的/data/local/tmp 目录是一个特殊目录，可以使用adb
 解决方法 ：
 
 adb shell
+
 su
+
 chmod 771  /data/local/tmp
+
 chown shell /data/local/tmp/
+
 chgrp shell /data/local/tmp/
+
 chcon -R u:object_r:shell_data_file:s0 /data/local/tmp
+
 执行以上命令后，再打开投屏工具进行尝试，成功啦 
 
 
@@ -191,7 +197,7 @@ chcon -R u:object_r:shell_data_file:s0 /data/local/tmp
 
 **If anyone feels like taking over give me a holler.**
 
-<a href="https://forum.xda-developers.com/apps/magisk/module-magiskhide-props-config-t3789228"><img src="https://img.shields.io/badge/-XDA-orange.svg"></a> [Support Thread](https://forum.xda-developers.com/apps/magisk/module-magiskhide-props-config-t3789228)
+https://forum.xda-developers.com/apps/magisk/module-magiskhide-props-config-t3789228"> src="https://img.shields.io/badge/-XDA-orange.svg">> [Support Thread](https://forum.xda-developers.com/apps/magisk/module-magiskhide-props-config-t3789228)
 
 ## What's this?
 This module is a very complicated way of doing something very simple. Complicated for me, that is... The aim is to make it easy for you, the user. The module changes prop values using the [Magisk resetprop tool](https://github.com/topjohnwu/Magisk/blob/master/docs/tools.md#resetprop), something that is very easy to do with a [Magisk boot script](https://github.com/topjohnwu/Magisk/blob/master/docs/details.md#magisk-booting-process) and some simple commands. This is very useful for a lot of things, among others to help pass the SafetyNet CTS Profile check on custom 和 uncertified ROMs (see [here](https://didgeridoohan.com/magisk/MagiskHide#hn_Matching_official_prop_values_to_pass_SafetyNet) for further details on this). And of course for any normal modification of your device that is done by altering build.prop or similar files.
